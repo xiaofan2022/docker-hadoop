@@ -1,100 +1,22 @@
-## Run Hadoop Cluster within Docker Containers
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/big-data-europe/Lobby)
 
-- Blog: [Run Hadoop Cluster in Docker Update](http://kiwenlau.com/2016/06/26/hadoop-cluster-docker-update-english/)
-- 博客: [基于Docker搭建Hadoop集群之升级版](http://kiwenlau.com/2016/06/12/160612-hadoop-cluster-docker-update/)
+# Changes
 
+Version 2.0.0 introduces uses wait_for_it script for the cluster startup
 
-![alt tag](https://raw.githubusercontent.com/kiwenlau/hadoop-cluster-docker/master/hadoop-cluster-docker.png)
+# Hadoop Docker
 
+## Supported Hadoop Versions
+See repository branches for supported hadoop versions
 
-### 3 Nodes Hadoop Cluster
+## Quick Start
 
-##### 1. pull docker image
+this repo are modified version of https://github.com/big-data-europe/docker-hadoop ,
+only deploy the hdfs (yarn and mapred are removed)
 
+To deploy an example HDFS cluster, run:
 ```
-sudo docker pull kiwenlau/hadoop:1.0
-```
-
-##### 2. clone github repository
-
-```
-git clone https://github.com/kiwenlau/hadoop-cluster-docker
+  docker-compose up
 ```
 
-##### 3. create hadoop network
-
-```
-sudo docker network create --driver=bridge hadoop
-```
-
-##### 4. start container
-
-```
-cd hadoop-cluster-docker
-sudo ./start-container.sh
-```
-
-**output:**
-
-```
-start hadoop-master container...
-start hadoop-slave1 container...
-start hadoop-slave2 container...
-root@hadoop-master:~# 
-```
-- start 3 containers with 1 master and 2 slaves
-- you will get into the /root directory of hadoop-master container
-
-##### 5. start hadoop
-
-```
-./start-hadoop.sh
-```
-
-##### 6. run wordcount
-
-```
-./run-wordcount.sh
-```
-
-**output**
-
-```
-input file1.txt:
-Hello Hadoop
-
-input file2.txt:
-Hello Docker
-
-wordcount output:
-Docker    1
-Hadoop    1
-Hello    2
-```
-
-### Arbitrary size Hadoop cluster
-
-##### 1. pull docker images and clone github repository
-
-do 1~3 like section A
-
-##### 2. rebuild docker image
-
-```
-sudo ./resize-cluster.sh 5
-```
-- specify parameter > 1: 2, 3..
-- this script just rebuild hadoop image with different **slaves** file, which pecifies the name of all slave nodes
-
-
-##### 3. start container
-
-```
-sudo ./start-container.sh 5
-```
-- use the same parameter as the step 2
-
-##### 4. run hadoop cluster 
-
-do 5~6 like section A
 

@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  namenode:
+    image: hadoop-wordcount:hadoop2.10.2_java8
+    container_name: wordcount
+networks:
+  default:
+    external:
+      name: docker-hadoop-master_default
