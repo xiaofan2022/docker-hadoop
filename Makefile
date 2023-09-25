@@ -8,4 +8,5 @@ build:
 	docker build -t hadoop-resourcemanager:$(current_branch) ./resourcemanager
 	docker build -t hadoop-nodemanager:$(current_branch) ./nodemanager
 	docker build -t hadoop-historyserver:$(current_branch) ./historyserver
+	docker build -t hadoop-hive:$(current_branch) ./hive
 	docker build -t hadoop-wordcount:$(current_branch) ./wordcount

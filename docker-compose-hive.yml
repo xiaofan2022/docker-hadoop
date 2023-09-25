@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+
+  hive-server:
+    image: hive:3.1.3.2
+    env_file:
+      - hive/hadoop-hive.env
+    networks:
+      - hadoop_default
+    environment:
+      SERVICE_PRECONDITION: "172.17.0.1:3306 namenode:8020"
+    ports:
+      - "9999:9999"
+      - "10000:10000"
+      - "10002:10002"
+volumes:
+  namenode:
+  datanode:
+
+networks:
+  hadoop_default:
+    external: true
