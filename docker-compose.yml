@@ -65,10 +65,10 @@ services:
   wordcount:
     image: hadoop-wordcount:hadoop2.10.2_java8
     container_name: wordcount
-    networks:
-      - hadoop-network  # 连接到外部网络
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 historyserver:19888"
+
+
 
 # docker network create mynetwork
 networks:
