@@ -1,22 +1,16 @@
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/big-data-europe/Lobby)
+##hadoop2.10.2_java8
 
-# Changes
-
-Version 2.0.0 introduces uses wait_for_it script for the cluster startup
-
-# Hadoop Docker
-
-## Supported Hadoop Versions
-See repository branches for supported hadoop versions
-
-## Quick Start
-
-this repo are modified version of https://github.com/big-data-europe/docker-hadoop ,
-only deploy the hdfs (yarn and mapred are removed)
-
-To deploy an example HDFS cluster, run:
+### Quick Start
+network:
+```
+sudo docker network create --driver=bridge docker-hadoop-master_default
+```
+hadoop run:
 ```
   docker-compose up
 ```
-
+hive:
+```
+docker-compose -f docker-compose-hive.yml up -d 
+```
 
