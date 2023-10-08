@@ -2,12 +2,12 @@ version: "3"
 
 services:
   namenode:
-    image: hadoop-namenode:hadoop2.10.2_java8
+    image: hadoop-namenode:hadoop3.3.6_java8
     container_name: namenode
     restart: always
     ports:
-      - 50070:50070
-      - 8020:8020
+      - 9870:9870
+      - 9000:9000
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
     environment:
@@ -16,59 +16,57 @@ services:
       - ./hadoop.env
 
   datanode:
-    image: hadoop-datanode:hadoop2.10.2_java8
+    image: hadoop-datanode:hadoop3.3.6_java8
     container_name: datanode
     restart: always
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
     environment:
-      SERVICE_PRECONDITION: "namenode:50070"
+      SERVICE_PRECONDITION: "namenode:9870"
     env_file:
       - ./hadoop.env
   resourcemanager:
-    image: hadoop-resourcemanager:hadoop2.10.2_java8
+    image: hadoop-resourcemanager:hadoop3.3.6_java8
     container_name: resourcemanager
     restart: always
     ports:
       - 8088:8088
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:50075"
       TZ: "Asia/Shanghai"
     env_file:
       - ./hadoop.env
 
   nodemanager1:
-    image: hadoop-nodemanager:hadoop2.10.2_java8
+    image: hadoop-nodemanager:hadoop3.3.6_java8
     container_name: nodemanager
     restart: always
     ports:
       - 8042:8042
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:50075 resourcemanager:8088"
       TZ: "Asia/Shanghai"
     env_file:
       - ./hadoop.env
 
   historyserver:
-    image: hadoop-historyserver:hadoop2.10.2_java8
+    image: hadoop-historyserver:hadoop3.3.6_java8
     container_name: historyserver
     restart: always
     ports:
       - 19888:19888
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:50075 resourcemanager:8088"
       TZ: "Asia/Shanghai"
     volumes:
       - /usr/local/docker/hadoop/hadoop1/yarn/timeline:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
   wordcount:
-    image: hadoop-wordcount:hadoop2.10.2_java8
+    image: hadoop-wordcount:hadoop3.3.6_java8
     container_name: wordcount
-    networks:
-      - hadoop-network  # 连接到外部网络
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 historyserver:19888"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:50075 resourcemanager:8088 historyserver:19888"
 
 # docker network create mynetwork
 networks:

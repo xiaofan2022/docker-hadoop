@@ -5,14 +5,14 @@ mkdir input
 echo "Hello Docker" >input/file2.txt
 echo "Hello Hadoop" >input/file1.txt
 # create input directory on HDFS
-hdfs dfs -rmr /input
-hdfs dfs -rmr /output
+hdfs dfs -rm -r /input
+hdfs dfs -rm -r /output
 hadoop fs -mkdir -p /input
 #
 ## put input files to HDFS
 hdfs dfs -put ./input/* /input
 #
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.2.jar wordcount /input /output
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar wordcount /input /output
 #
 echo -e "\ninput file1.txt:"
 hdfs dfs -cat /input/file1.txt

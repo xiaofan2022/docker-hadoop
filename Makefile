@@ -1,6 +1,6 @@
 DOCKER_NETWORK = docker-hadoop_default
 ENV_FILE = hadoop.env
-current_branch := hadoop2.10.2_java8
+current_branch := hadoop3.3.6_java8
 build:
 	docker build -t hadoop-base:$(current_branch) ./base
 	docker build -t hadoop-namenode:$(current_branch) ./namenode

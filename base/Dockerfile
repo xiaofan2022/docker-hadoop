@@ -21,7 +21,7 @@ RUN wget https://repo.huaweicloud.com/java/jdk/8u202-b08/jdk-8u202-linux-x64.tar
       
 ENV JAVA_HOME=/usr/local/jdk1.8
 
-ENV HADOOP_VERSION 2.10.2
+ENV HADOOP_VERSION 3.3.6
 ENV HADOOP_URL https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 
 RUN set -x \
@@ -54,7 +54,7 @@ ENV PATH $JAVA_HOME/bin/:$PATH
 #ADD entrypoint.sh /entrypoint.sh
 ###
 ##
-##ENV CORE_CONF_fs_defaultFS                                              hdfs://namenode:50070
+##ENV CORE_CONF_fs_defaultFS                                              hdfs://namenode:9870
 ##ENV CORE_CONF_hadoop_http_staticuser_user                               root
 ##ENV CORE_CONF_hadoop_proxyuser_hue_hosts                                *
 ##ENV CORE_CONF_hadoop_proxyuser_hue_groups                               *

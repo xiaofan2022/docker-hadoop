@@ -21,7 +21,7 @@ services:
           - node.hostname == akswnc4.aksw.uni-leipzig.de
       labels:
         traefik.docker.network: hbase
-        traefik.port: 50070
+        traefik.port: 9870
 
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
@@ -32,7 +32,7 @@ services:
     env_file:
       - ./hadoop.env
     environment:
-      SERVICE_PRECONDITION: "namenode:50070"
+      SERVICE_PRECONDITION: "namenode:9870"
     deploy:
       mode: global
       restart_policy:
@@ -46,7 +46,7 @@ services:
     networks:
       - hbase
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:50075"
     env_file:
       - ./hadoop.env
     deploy:
@@ -68,7 +68,7 @@ services:
     networks:
       - hbase
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:50075 resourcemanager:8088"
     env_file:
       - ./hadoop.env
     deploy:
@@ -86,7 +86,7 @@ services:
     volumes:
       - hadoop_historyserver:/hadoop/yarn/timeline
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:50075 resourcemanager:8088"
     env_file:
       - ./hadoop.env
     deploy:

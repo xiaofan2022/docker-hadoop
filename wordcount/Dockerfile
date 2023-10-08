@@ -1,4 +1,4 @@
-FROM hadoop-base:hadoop2.10.2_java8
+FROM hadoop-base:hadoop3.3.6_java8
 
 ENV CLASS_TO_RUN="wordcount"
 ENV PARAMS="/input /output"

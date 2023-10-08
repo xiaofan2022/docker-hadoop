@@ -9,7 +9,7 @@ services:
     networks:
       - hadoop_default
     environment:
-      SERVICE_PRECONDITION: "172.17.0.1:3306 namenode:8020"
+      SERVICE_PRECONDITION: "172.17.0.1:3306 namenode:9000"
     ports:
       - "9999:9999"
       - "10000:10000"
