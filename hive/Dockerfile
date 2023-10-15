@@ -1,6 +1,6 @@
 FROM hadoop-base:hadoop3.3.6_java8
 
-ENV HIVE_VERSION=2.3.9
+ENV HIVE_VERSION=3.1.3
 
 ENV HIVE_HOME /opt/hive-$HIVE_VERSION
 ENV PATH $HIVE_HOME/bin:$PATH
@@ -11,10 +11,12 @@ WORKDIR /opt
 
 
 #Install Hive and Mysql JDBC
-RUN wget https://repo.huaweicloud.com/apache/hive/hive-2.3.9/apache-hive-2.3.9-bin.tar.gz --no-check-certificate -O /tmp/hive-2.3.9-bin.tar.gz &&\
-    tar -xzvf /tmp/hive-2.3.9-bin.tar.gz -C /tmp && \
-    mv /tmp/apache-hive-2.3.9-bin /opt/hive-2.3.9 && \
-    rm /tmp/hive*
+RUN wget https://repo.huaweicloud.com/apache/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz --no-check-certificate -O /tmp/hive-$HIVE_VERSION-bin.tar.gz &&\
+    tar -xzvf /tmp/hive-$HIVE_VERSION-bin.tar.gz -C /tmp && \
+    mv /tmp/apache-hive-$HIVE_VERSION-bin /opt/hive-$HIVE_VERSION && \
+    rm /tmp/hive* && \
+    wget https://maven.aliyun.com/nexus/content/groups/public/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar -O $HIVE_HOME/lib/mysql-connector-java-8.0.27.jar && \
+    wget https://maven.aliyun.com/nexus/content/groups/public/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar -O $HIVE_HOME/lib/guava-27.0-jre.jar
 
 
 
@@ -45,6 +47,6 @@ EXPOSE 10000
 EXPOSE 10002
 
 #ENTRYPOINT ["entrypoint.sh"]
-#CMD startup.sh
-CMD [ "sh", "-c", "service ssh start; bash"]
+CMD startup.sh
+#CMD [ "sh", "-c", "service ssh start; bash"]
 
