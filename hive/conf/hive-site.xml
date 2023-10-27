@@ -20,7 +20,7 @@
     <!-- jdbc连接的URL -->
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:mysql://mysql:3306/hive_meta?useSSL=false&amp;allowPublicKeyRetrieval=true</value>
+        <value>jdbc:mysql://mysql:3306/hive_meta?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;characterEnconding=UTF-8</value>
     </property>
     <!-- jdbc连接的Driver-->
     <property>

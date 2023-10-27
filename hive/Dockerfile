@@ -9,6 +9,7 @@ ENV HADOOP_HOME /opt/hadoop-$HADOOP_VERSION
 WORKDIR /opt
 
 
+#RUN apt-get install mysql-client
 
 #Install Hive and Mysql JDBC
 RUN wget https://repo.huaweicloud.com/apache/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz --no-check-certificate -O /tmp/hive-$HIVE_VERSION-bin.tar.gz &&\
@@ -41,7 +42,7 @@ RUN chmod +x /usr/local/bin/startup.sh
 
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
-
+ENV HADOOP_CLIENT_OPTS "-Dfile.encoding=UTF-8"
 EXPOSE 9999
 EXPOSE 10000
 EXPOSE 10002
