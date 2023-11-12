@@ -1,11 +1,5 @@
-# Hadoop Docker
-
-## Supported Hadoop Versions
-* hadoop2.10.2_java8(nn+dn+rm+dm+history+hive+mysql)
-* hadoop3
-## Quick Start
+###命令
+```shell
+#宿主机执行
+sysctl -w vm.max_map_count=2000000
 ```
-  docker-compose up
-```
-
-
