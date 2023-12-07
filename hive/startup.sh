@@ -1,4 +1,5 @@
 #!/bin/bash
+mysql -h mysql  -u root -proot -e "drop database if exists hive"
 $HIVE_HOME/bin/schematool -dbType mysql -initSchema -verbose
 
 hadoop fs -mkdir       /tmp

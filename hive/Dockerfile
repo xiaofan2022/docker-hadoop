@@ -11,6 +11,9 @@ WORKDIR /opt
 
 RUN mkdir -p $HIVE_LOG_DIR
 
+RUN apt-get update && apt-get install -y  \
+    mysql-client \
+    && rm -rf /var/lib/apt/lists/*
 #Install Hive and Mysql JDBC
 RUN wget https://repo.huaweicloud.com/apache/hive/hive-2.3.9/apache-hive-2.3.9-bin.tar.gz --no-check-certificate -O /tmp/hive-2.3.9-bin.tar.gz &&\
     tar -xzvf /tmp/hive-2.3.9-bin.tar.gz -C /tmp && \
