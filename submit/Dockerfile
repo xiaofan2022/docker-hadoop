@@ -1,5 +1,4 @@
-FROM bde2020/flink-base:1.14.5-hadoop3.2
-
+FROM flink-base:1.16.3_scala_2.12
 LABEL MAINTAINER="Gezim Sejdiu <g.sejdiu@gmail.com>"
 
 ENV FLINK_APPLICATION_JAR_NAME application-1.0

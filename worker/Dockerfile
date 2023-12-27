@@ -1,7 +1,6 @@
-FROM bde2020/flink-base:1.14.5-hadoop3.2
-
-LABEL MAINTAINER="Gezim Sejdiu <g.sejdiu@gmail.com>"
-
+FROM flink-base:1.16.3_scala_2.12
+RUN mkdir -p /usr/local/flink/log
+ADD flink-conf.yaml /usr/local/flink/conf/
 ADD worker.sh /
 
 EXPOSE 8081
